@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import Link from "next/link"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -9,30 +10,33 @@ export default function Header() {
   return (
     <header className="fixed w-full top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-sm">TV</span>
           </div>
           <span className="text-lg font-bold text-foreground">TechVision</span>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex gap-8 items-center">
-          <a href="#services" className="text-muted-foreground hover:text-foreground transition">
+          <Link href="/services" className="text-muted-foreground hover:text-foreground transition">
             サービス
-          </a>
-          <a href="#expertise" className="text-muted-foreground hover:text-foreground transition">
+          </Link>
+          <Link href="/expertise" className="text-muted-foreground hover:text-foreground transition">
             専門分野
-          </a>
-          <a href="#cases" className="text-muted-foreground hover:text-foreground transition">
+          </Link>
+          <Link href="/cases" className="text-muted-foreground hover:text-foreground transition">
             事例
-          </a>
-          <a href="#team" className="text-muted-foreground hover:text-foreground transition">
+          </Link>
+          <Link href="/team" className="text-muted-foreground hover:text-foreground transition">
             チーム
-          </a>
-          <button className="bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-lg transition">
+          </Link>
+          <Link
+            href="/contact"
+            className="bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-lg transition"
+          >
             お問い合わせ
-          </button>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -45,19 +49,41 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden bg-card border-b border-border">
           <nav className="flex flex-col p-4 gap-4">
-            <a href="#services" className="text-muted-foreground hover:text-foreground">
+            <Link
+              href="/services"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => setIsMenuOpen(false)}
+            >
               サービス
-            </a>
-            <a href="#expertise" className="text-muted-foreground hover:text-foreground">
+            </Link>
+            <Link
+              href="/expertise"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => setIsMenuOpen(false)}
+            >
               専門分野
-            </a>
-            <a href="#cases" className="text-muted-foreground hover:text-foreground">
+            </Link>
+            <Link
+              href="/cases"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => setIsMenuOpen(false)}
+            >
               事例
-            </a>
-            <a href="#team" className="text-muted-foreground hover:text-foreground">
+            </Link>
+            <Link
+              href="/team"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => setIsMenuOpen(false)}
+            >
               チーム
-            </a>
-            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg w-full">お問い合わせ</button>
+            </Link>
+            <Link
+              href="/contact"
+              className="bg-primary text-primary-foreground px-6 py-2 rounded-lg w-full text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              お問い合わせ
+            </Link>
           </nav>
         </div>
       )}

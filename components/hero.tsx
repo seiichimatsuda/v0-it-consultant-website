@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-b from-background via-background to-card/30 relative overflow-hidden">
@@ -51,15 +53,16 @@ export default function Hero() {
         {/* Right - Visual */}
         <div className="hidden md:flex items-center justify-center">
           <div className="relative w-full aspect-square max-w-md">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl" />
-            <div className="absolute inset-4 bg-card rounded-xl border border-border/50" />
-            <div className="absolute inset-8 bg-gradient-to-br from-primary/10 to-transparent rounded-lg" />
-            <svg className="w-full h-full p-12 text-primary/30" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-              <circle cx="100" cy="100" r="80" strokeWidth="1" />
-              <circle cx="100" cy="100" r="60" strokeWidth="1" />
-              <circle cx="100" cy="100" r="40" strokeWidth="1" />
-              <path d="M100 20 L100 180 M20 100 L180 100" strokeWidth="1" />
-            </svg>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl transform rotate-3" />
+            <div className="absolute inset-0 rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card">
+              <Image
+                src="/images/hero-visual.jpg"
+                alt="IT Consulting Visualization"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
