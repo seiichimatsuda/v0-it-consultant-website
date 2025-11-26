@@ -1,20 +1,25 @@
 "use client"
 
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, User, LogOut } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
-export default function Header() {
+interface HeaderProps {
+  user: {
+    name?: string
+    email?: string
+  } | null
+}
+
+export default function Header({ user }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <header className="fixed w-full top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">TV</span>
-          </div>
-          <span className="text-lg font-bold text-foreground">TechVision</span>
+        <Link href="/" className="flex items-center">
+          <Image src="/images/logo.png" alt="MSL" width={80} height={40} className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Menu */}
@@ -31,9 +36,35 @@ export default function Header() {
           <Link href="/team" className="text-muted-foreground hover:text-foreground transition">
             チーム
           </Link>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition"
+              >
+                <User size={18} />
+                <span className="max-w-[100px] truncate">{user.name || user.email}</span>
+              </Link>
+              <a
+                href="/api/auth/logout"
+                className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition"
+              >
+                <LogOut size={18} />
+              </a>
+            </div>
+          ) : (
+            <a
+              href="/api/auth/login"
+              className="bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-lg transition"
+            >
+              ログイン
+            </a>
+          )}
+
           <Link
             href="/contact"
-            className="bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-lg transition"
+            className="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-6 py-2 rounded-lg transition border border-border"
           >
             お問い合わせ
           </Link>
@@ -77,9 +108,37 @@ export default function Header() {
             >
               チーム
             </Link>
+
+            {user ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <User size={18} />
+                  <span>{user.name || user.email}</span>
+                </Link>
+                <a
+                  href="/api/auth/logout"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                >
+                  <LogOut size={18} />
+                  <span>ログアウト</span>
+                </a>
+              </>
+            ) : (
+              <a
+                href="/api/auth/login"
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-lg w-full text-center"
+              >
+                ログイン
+              </a>
+            )}
+
             <Link
               href="/contact"
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-lg w-full text-center"
+              className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg w-full text-center border border-border"
               onClick={() => setIsMenuOpen(false)}
             >
               お問い合わせ

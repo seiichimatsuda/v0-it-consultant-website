@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Team() {
   const team = [
     {
@@ -38,7 +40,15 @@ export default function Team() {
               key={index}
               className="bg-background rounded-xl p-8 border border-border hover:border-primary/50 transition"
             >
-              <div className="w-12 h-12 bg-primary/20 rounded-full mb-4" />
+              <div className="w-24 h-24 bg-primary/20 rounded-full mb-4 overflow-hidden flex items-center justify-center">
+                <Image
+                  src={`/images/team-member-${index + 1}.jpg`}
+                  alt={member.name}
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
               <p className="text-primary font-semibold text-sm mb-3">{member.role}</p>
               <p className="text-muted-foreground leading-relaxed">{member.bio}</p>

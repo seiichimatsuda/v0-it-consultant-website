@@ -1,14 +1,13 @@
+import Image from "next/image"
+
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">TV</span>
-              </div>
-              <span className="font-bold text-foreground">TechVision</span>
+            <div className="flex items-center mb-4">
+              <Image src="/images/logo.png" alt="MSL" width={80} height={40} className="h-10 w-auto" />
             </div>
             <p className="text-muted-foreground text-sm">デジタル変革を実現するITコンサルタント</p>
           </div>
@@ -69,7 +68,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-          <p>© 2025 TechVision Consulting. All rights reserved.</p>
+          <p>© 2025 MSL Consulting. All rights reserved.</p>
         </div>
       </div>
     </footer>
